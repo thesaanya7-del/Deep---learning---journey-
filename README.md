@@ -43,5 +43,19 @@ Training deep networks from scratch requires massive computation and huge datase
 
 > 💡 **What is a Pretrained Model?**
 > A model like **ResNet-18** has already learned basic visual features (edges, shapes, textures) on millions of images from ImageNet. We only **fine-tune** its final layers for our specific task.
+## 🛠️ Fast.ai Implementation
+
+### 1. Data Pipeline (`DataLoaders`)
+`DataLoaders` (`dls`) handle raw files, map labels, perform train/validation splits, and push batched data to the GPU.
+
+```python
+from fastai.vision.all import *
+
+# Download dataset & build DataLoaders
+path = untar_data(URLs.PETS)/'images'
+dls = ImageDataLoaders.from_name_func(
+path, get_image_files(path), valid_pct=0.2, seed=42,
+label_func=is_cat, item_tfms=Resize(224)
+)
 
 
