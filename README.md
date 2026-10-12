@@ -62,4 +62,53 @@ learn = vision_learner(dls, resnet18, metrics=error_rate)
 
 # Fine-tune model for 1 epoch
 learn.fine_tune(1)
+ Knowledge Check & Q/A
+
+<details>
+
+<summary><b>❓ 1. What is the role of <code>dls</code> (DataLoaders)?</b></summary>
+
+
+
+
+
+<code>dls</code> organizes raw image files and labels into structured minibatches, handles validation splits (e.g., 20%), and efficiently streams batches to the GPU/CPU during training.
+
+</details>
+
+<details>
+
+<summary><b>❓ 2. Why use a pretrained model like ResNet-18?</b></summary>
+
+
+
+
+
+It saves compute time and requires significantly less data. ResNet-18 already understands fundamental visual features, so we only need to adapt its final layer for our target dataset.
+
+</details>
+
+<details>
+
+<summary><b>❓ 3. What if performance is great on training data but poor on new images?</b></summary>
+
+
+
+
+
+This indicates <b>Overfitting</b>. The model memorized specific details of the training set instead of learning generalizable features.
+
+</details>
+
+🗺️ Learning Roadmap
+
+ [x] Part 1: Fundamentals, Data Pipelines, & Fine-Tuning Pretrained Models
+
+ [ ] Part 2: Detailed fast.ai Workflow, Learning Rate Finder, & Loss Functions
+
+ [ ] Part 3: Image Augmentations & Improving Accuracy
+
+ [ ] Part 4: Deploying Model as a Web Application
+
+
 
