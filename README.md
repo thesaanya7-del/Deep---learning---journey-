@@ -35,7 +35,9 @@ from fastai.vision.all import *
 path = untar_data(URLs.PETS)/'images'
 Downloaded and extracted the Oxford-IIIT Pet Dataset.
 
-Step B: Building DataLoaders (dls)
+Step B:
+
+Building DataLoaders (dls)
 def is_cat(x): 
     return x[0].isupper()
 
@@ -47,16 +49,22 @@ dls = ImageDataLoaders.from_name_func(
     label_func=is_cat, 
     item_tfms=Resize(224)
 )
-Step C: Training the Model
+Step C:
+
+ Training the Model
 learn = vision_learner(dls, resnet18, metrics=error_rate)
 learn.fine_tune(1)
-Step D: Making Predictions & Viewing Results
+
+Step D:
+Making Predictions & Viewing Results
 uploader = SimpleNamespace(data=['path_to_your_image.jpg'])
 img = PILImage.create(uploader.data[0])
 is_cat, _, probs = learn.predict(img)
 
 print(f"Is this a cat?: {is_cat}.")
 print(f"Probability it's a cat: {probs[1].item():.4f}")
+
+
 4. Knowledge Check & Practical Challenge
 ❓ Q1: What is the role of dls (DataLoaders)?
 Answer: dls prepares, batches, and feeds data into the model. It splits data into training and validation sets, applies transformations (like resizing images to 224x224), and maps targets/labels to their respective images.
