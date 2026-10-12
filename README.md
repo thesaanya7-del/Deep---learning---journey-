@@ -57,5 +57,9 @@ dls = ImageDataLoaders.from_name_func(
 path, get_image_files(path), valid_pct=0.2, seed=42,
 label_func=is_cat, item_tfms=Resize(224)
 )
+# Initialize learner with pre-trained ResNet-18
+learn = vision_learner(dls, resnet18, metrics=error_rate)
 
+# Fine-tune model for 1 epoch
+learn.fine_tune(1)
 
